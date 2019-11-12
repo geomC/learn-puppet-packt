@@ -36,6 +36,7 @@
 # Copyright 2019 Your name here, unless otherwise noted.
 #
 class webapp {
-
-
+    # the notify resource allows Puppet to report a message when a resource is processed.
+    notify { 'Applying class webapp':
+     }
 }
