@@ -38,6 +38,15 @@
 class webapp {
   # instantiate the puppet class
   include apache
+  file { '/var/www/html/index.html':
+    # the template function does not take a file path but a reference in the form of <modulename>/<template>
+    content => template('webapp/index.html.erb'),
+    #  owner is used to state a user account that Puppet should make as the owner of the file on the target machine
+    owner => 'apache',
+    # require ensures that the apache user is created prior to setting the file
+    # owner as the apache user.
+    require => User['apache'];
+  }
   # the notify resource allows Puppet to report a message when a resource is processed.
   notify { 'Applying class webapp':
   }
